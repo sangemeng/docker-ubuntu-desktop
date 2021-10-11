@@ -1,6 +1,6 @@
 # 简介
 
-在`ubuntu:18.04`的基础上，安装中文桌面环境，支持SSH和VNC远程连接
+在`ubuntu:20.04`的基础上，安装中文桌面环境，支持SSH和VNC远程连接
 <br>
 
 [![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/gotoeasy/ubuntu-desktop)](https://hub.docker.com/r/gotoeasy/ubuntu-desktop)
