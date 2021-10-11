@@ -10,6 +10,35 @@
 
 <br>
 
+# 报错
+## 链接库问题(ARM设备)
+```
+Sat May 9 05:34:15 2020
+Connections: accepted: 192.168.3.3::2303
+SConnection: Client needs protocol version 3.8
+SConnection: Client requests security type VncAuth(2)
+terminate called after throwing an instance of 'rdr::Exception'
+terminate called recursively
+(EE)
+(EE) Backtrace:
+(EE) 0: /usr/bin/Xtigervnc (OsLookupColor+0x188) [0xaaaac24fe038]
+(EE) unw_get_proc_info failed: no unwind info found [-10]
+(EE)
+(EE)
+Fatal server error:
+(EE) Caught signal 6 (Aborted). Server aborting
+(EE)
+X connection to :1 broken (explicit kill or server shutdown).^M
+Killing Xtigervnc process ID 26960… which was already dead
+Cleaning stale pidfile '/home/ubuntu/.vnc/ubuntu:1.pid'!
+//启动前带上libgcc_s
+# 64位系统
+LD_PRELOAD=/lib/aarch64-linux-gnu/libgcc_s.so.1 vncserver -localhost no
+# 32位系统
+LD_PRELOAD=/lib/arm-linux-gnueabihf/libgcc_s.so.1 vncserver -localhost no
+```
+参考：[树莓派 Ubuntu 安装vncserver](https://www.cyh.ac.cn/2020/05/09/%E6%A0%91%E8%8E%93%E6%B4%BE-ubuntu-%E5%AE%89%E8%A3%85vncserver/)
+
 # 例子
 ```
 // 以后台方式运行容器，指定SSH和VNC端口，默认密码为123456
