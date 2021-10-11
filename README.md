@@ -24,7 +24,7 @@ docker-compose up
 
 # 内容
 
-- [x] `ubuntu:18.04`
+- [x] `ubuntu:20.04`
 - [x] 用户：`root`
 - [x] 默认SSH密码：`123456`
 - [x] 默认VNC密码：`123456`
