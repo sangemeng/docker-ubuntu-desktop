@@ -1,5 +1,5 @@
 # 基础镜像
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 # 维护者信息
 MAINTAINER gotoeasy <gotoeasy@163.com>
 
@@ -30,7 +30,7 @@ RUN apt-get -y update && \
     sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config && \
     mkdir -p /root/.ssh && \
     # TigerVNC
-    wget -qO- https://dl.bintray.com/tigervnc/stable/tigervnc-1.9.0.x86_64.tar.gz | tar xz --strip 1 -C / && \
+    apt -y install tigervnc-standalone-server tigervnc-common && \
     mkdir -p /root/.vnc && \
     echo $PASSWD | vncpasswd -f > /root/.vnc/passwd && \
     chmod 600 /root/.vnc/passwd && \
@@ -59,7 +59,7 @@ RUN echo "#!/bin/bash\n" > /root/startup.sh && \
     # VNC
     echo 'vncserver -kill :0' >> /root/startup.sh && \
     echo "rm -rfv /tmp/.X*-lock /tmp/.X11-unix" >> /root/startup.sh && \
-    echo 'vncserver :0 -geometry $SIZE' >> /root/startup.sh && \
+    echo 'vncserver :0 -geometry $SIZE -localhost no' >> /root/startup.sh && \
     echo 'tail -f /root/.vnc/*:0.log' >> /root/startup.sh && \
     # 可执行脚本
     chmod +x /root/startup.sh
